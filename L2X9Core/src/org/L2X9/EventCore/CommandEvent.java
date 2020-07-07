@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class CommandEvent implements Listener {
+	
 	@SuppressWarnings({ "unused" })
 	@EventHandler
 	public void onCMD(PlayerCommandPreprocessEvent event) {
@@ -24,11 +25,11 @@ public class CommandEvent implements Listener {
 				firstfour = cmd.substring(0, 4);
 			}
 			if (firstcmd.equalsIgnoreCase("/home")) {
+				System.out.println("Event Called");
 				event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',
 						"&6you must be &r&c" + spawn + "&6 blocks away from spawn to use /home"));
 				event.setCancelled(true);
 			}
 		}
-
 	}
 }

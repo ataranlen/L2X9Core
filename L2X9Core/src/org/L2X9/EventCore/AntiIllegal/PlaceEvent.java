@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.minecraft.server.v1_12_R1.ItemArmor;
 
 import org.L2X9.EventCore.Main;
 import org.bukkit.block.BlockState;
@@ -17,6 +16,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import net.minecraft.server.v1_12_R1.ItemArmor;
 
 public class PlaceEvent implements Listener {
 	@SuppressWarnings({ "deprecation", "rawtypes" })

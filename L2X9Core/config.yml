@@ -40,3 +40,6 @@ Redstone:
    Disable-TPS: 16
 #AntiIllegal enabled true/false
 AntiIllegal-Enabled: true
+#Anti LightLag
+LightingLag-StepIn:
+   TPS: 17

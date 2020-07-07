@@ -7,6 +7,7 @@ import org.L2X9.EventCore.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
@@ -20,13 +21,17 @@ public class BlockRedstone implements Listener {
 		if (API.getTps() <= Main.getPlugin().getConfig().getInt("Redstone.Disable-TPS")
 				&& !(event.getBlock().getType() == Material.TRAPPED_CHEST)) {
 			Block block = event.getBlock();
-			String fagMachine = "Removed a lagmache at " + block.getLocation().getBlockX() + " "
+			String fagMachine = "Deleted a taco machine at " + block.getLocation().getBlockX() + " "
 					+ block.getLocation().getBlockY() + " " + block.getLocation().getBlockZ() + " in world "
 					+ block.getLocation().getWorld().getName() + "";
 			event.setNewCurrent(0);
 			event.getBlock().setType(Material.AIR);
 			event.getBlock().getLocation().getWorld().strikeLightning(event.getBlock().getLocation());
 			System.out.println(ChatColor.translateAlternateColorCodes('&', "&a" + fagMachine));
+			for (Entity ents : block.getChunk().getEntities()) {
+				ents.remove();
+				System.out.println(ChatColor.GREEN + "Removed" + block.getChunk().getEntities().length + " from a laggy chunk");
+			}
 			// possibleLm.add(fagMachine);
 		}
 	}

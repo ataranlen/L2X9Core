@@ -5,9 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.minecraft.server.v1_12_R1.Item;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
-import net.minecraft.server.v1_12_R1.TileEntityShulkerBox;
 
 import org.L2X9.EventCore.Main;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
@@ -17,6 +14,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import net.minecraft.server.v1_12_R1.Item;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.TileEntityShulkerBox;
 
 @SuppressWarnings("deprecation")
 public class ItemPickup implements Listener {

@@ -46,7 +46,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new BlockPlace(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new Offhand(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new GateWay(), (Plugin) this);
-	    getServer().getPluginManager().registerEvents(new BookBan(), (Plugin)this);
+		getServer().getPluginManager().registerEvents(new BookBan(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new ChinkBan(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new MoveEvent(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new HopperTransfer(), (Plugin) this);

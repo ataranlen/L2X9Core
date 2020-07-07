@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.minecraft.server.v1_12_R1.ItemArmor;
 
 import org.L2X9.EventCore.Main;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
@@ -14,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import net.minecraft.server.v1_12_R1.ItemArmor;
 
 public class InventoryOpen implements Listener {
 	@SuppressWarnings({ "deprecation", "rawtypes" })
