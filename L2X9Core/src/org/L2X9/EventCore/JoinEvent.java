@@ -31,7 +31,6 @@ public class JoinEvent implements Listener {
 	public void onKick(PlayerKickEvent event) {
 		if (event.getReason().equalsIgnoreCase("Timed out")) {
 			event.setCancelled(true);
-			//t
 		}
 	}
 
