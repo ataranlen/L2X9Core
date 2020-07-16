@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import net.minecraft.server.v1_12_R1.MinecraftServer;
 
+
 public class API {
 	@SuppressWarnings("deprecation")
 	public static double getTps() {
@@ -38,8 +39,8 @@ public class API {
 		player.teleport(new Location(player.getWorld(), x, y, z));
 	}
 
-	public static void runSysCommand(String s) {
-		String command = s;
+	public static void runSysCommand(String string) {
+		String command = string;
 
 		try {
 			Process process = Runtime.getRuntime().exec(command);
@@ -56,7 +57,25 @@ public class API {
 		}
 	}
 
-	public static void runMcCommand(String s) {
-		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), s);
+	public static void runMcCommand(String string) {
+		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), string);
 	}
+	public static void sendOpMessgge(String message) {
+		for (Player online : Bukkit.getOnlinePlayers()) {
+			if (online.isOp()) {
+				online.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+				
+			}
+		}
+	}
+	public static Player getNearbyPlayers(int i, Location loc) {
+		Player plrs = null;
+		for (Player nearby : loc.getNearbyPlayers(i)) {
+			plrs = nearby;
+			
+		}
+		return plrs;
+		
+	}
+	
 }

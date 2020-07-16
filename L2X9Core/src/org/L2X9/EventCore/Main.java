@@ -11,6 +11,7 @@ import org.L2X9.EventCore.AntiIllegal.PlaceEvent;
 import org.L2X9.EventCore.AntiLag.BlockRedstone;
 import org.L2X9.EventCore.AntiLag.Elytra;
 import org.L2X9.EventCore.AntiLag.WitherSpawn;
+import org.L2X9.EventCore.Commands.SayCommand;
 import org.L2X9.EventCore.Patches.BookBan;
 import org.L2X9.EventCore.Patches.ChinkBan;
 import org.L2X9.EventCore.Patches.GateWay;
@@ -23,12 +24,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 	public static String[] idArray = new String[] { "7", "166", "52", "137", "119", "120", "383", "122" };
-	public static String[] ubArray = new String[] { "310", "311", "312", "313", "276", "277", "278", "279", "293",
-			"259", "261", "443" };
-	@SuppressWarnings("rawtypes")
-	public static List blockedids;
-	@SuppressWarnings("rawtypes")
-	public static List allowedUBs;
+	public static String[] ubArray = new String[] { "310", "311", "312", "313", "276", "277", "278", "279", "293","259", "261", "443" };
+	public static List<String> blockedids;
+	public static List<String> allowedUBs;
 	static {
 		blockedids = Arrays.asList(idArray);
 		allowedUBs = Arrays.asList(ubArray);
@@ -63,6 +61,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new LightingLag(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new BucketEvent(), (Plugin) this);
 		getCommand("aefreload").setExecutor(new Rconfig());
+		getCommand("say").setExecutor(new SayCommand());
 	}
 
 	public void onDisable() {

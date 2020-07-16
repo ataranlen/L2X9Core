@@ -16,10 +16,11 @@ public class Elytra implements Listener {
 	@EventHandler
 	public void onToggleGlide(EntityToggleGlideEvent event) {
 		if (event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
 			if (API.getTps() <= Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS")) {
 				event.setCancelled(true);
-				// API.sendMessage(player, "&6Elytras are disabled if the tps is below&r&c " +
-				// Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS") + "");
+				API.sendMessage(player, "[&b&lL2X9&r&3&lCore&r] &6Elytras are disabled if the tps is below&r&c "
+						+ Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS") + "");
 			}
 		}
 	}
@@ -29,10 +30,16 @@ public class Elytra implements Listener {
 		Player player = event.getPlayer();
 		if (API.getTps() <= Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS")) {
 			if (player.isGliding()) {
-				// API.sendMessage(player, "&6Elytras are disabled if the tps is below&r&c " +
-				// Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS") + "");
+				API.sendMessage(player, "[&b&lL2X9&r&3&lCore&r] &6Elytras are disabled if the tps is below&r&c "
+						+ Main.getPlugin().getConfig().getInt("Elytra.Disable-TPS") + "");
 				player.setGliding(false);
-				player.getLocation().getBlock().setType(Material.OBSIDIAN);
+				if (!(player.getWorld().getBlockAt(
+					 player.getLocation().getBlockX(),
+					  player.getLocation().getBlockY() - 1,
+					  player.getLocation().getBlockZ())
+					 .getType() == Material.BEDROCK)) {
+					  player.getLocation().getBlock().setType(Material.OBSIDIAN);
+				}
 				PlayerInventory inventory = player.getInventory();
 				if (!((inventory.getChestplate() != null)
 						&& inventory.getChestplate().getType().equals(Material.ELYTRA)))

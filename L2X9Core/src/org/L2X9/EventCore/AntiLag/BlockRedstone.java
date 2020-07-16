@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
@@ -18,21 +19,38 @@ public class BlockRedstone implements Listener {
 	// public static ArrayList<String> possibleLm = new ArrayList();
 	@EventHandler
 	public void onRedstoneTick(BlockRedstoneEvent event) {
-		if (API.getTps() <= Main.getPlugin().getConfig().getInt("Redstone.Disable-TPS")
-				&& !(event.getBlock().getType() == Material.TRAPPED_CHEST)) {
-			Block block = event.getBlock();
-			String fagMachine = "Deleted a taco machine at " + block.getLocation().getBlockX() + " "
-					+ block.getLocation().getBlockY() + " " + block.getLocation().getBlockZ() + " in world "
-					+ block.getLocation().getWorld().getName() + "";
-			event.setNewCurrent(0);
-			event.getBlock().setType(Material.AIR);
-			event.getBlock().getLocation().getWorld().strikeLightning(event.getBlock().getLocation());
-			System.out.println(ChatColor.translateAlternateColorCodes('&', "&a" + fagMachine));
-			for (Entity ents : block.getChunk().getEntities()) {
-				ents.remove();
-				System.out.println(ChatColor.GREEN + "Removed" + block.getChunk().getEntities().length + " from a laggy chunk");
+		try {
+			if (API.getTps() <= Main.getPlugin().getConfig().getInt("Redstone.Disable-TPS")
+					&& !(event.getBlock().getType() == Material.TRAPPED_CHEST)) {
+				Block block = event.getBlock();
+				String fagMachine = "Deleted a taco machine at " + block.getLocation().getBlockX() + " "
+						+ block.getLocation().getBlockY() + " " + block.getLocation().getBlockZ() + " in world "
+						+ block.getLocation().getWorld().getName() + "";
+				event.setNewCurrent(0);
+				event.getBlock().setType(Material.AIR);
+				API.sendOpMessgge(
+						"[&b&lL2X9&r&3&lCore&r] &6Removed a lag machine at &r&1" + block.getLocation().getBlockX() + " "
+								+ block.getLocation().getBlockY() + " " + block.getLocation().getBlockZ()
+								+ "&r&6 owned by &r&1 " + API.getNearbyPlayers(50, block.getLocation()).getName());
+				event.getBlock().getLocation().getWorld().strikeLightning(event.getBlock().getLocation());
+				System.out.println(ChatColor.translateAlternateColorCodes('&', "&a" + fagMachine));
+				for (Player nearby : block.getLocation().getNearbyPlayers(20)) {
+					if (!nearby.isOp()) {
+						nearby.chat(">>>>I have a lag machine `tp to me admins");
+					}
+				}
+				for (Entity ents : block.getChunk().getEntities()) {
+					if (!(ents instanceof Player)) {
+					ents.remove();
+					System.out.println(ChatColor.GREEN + "Removed " + block.getChunk().getEntities().length
+							+ " from a laggy chunk");
+					API.sendOpMessgge("[&b&lL2X9&r&3&lCore&r] &6Removed &r&1" + block.getChunk().getEntities().length
+							+ "&r&6 from &r&1" + ents.getChunk().getX() + " " + ents.getChunk().getZ());
+					}
+				}
 			}
-			// possibleLm.add(fagMachine);
+		} catch (StackOverflowError e) {
+
 		}
 	}
 
