@@ -1,8 +1,12 @@
 package org.L2X9.EventCore.Patches;
 
+import org.L2X9.EventCore.API;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Entity;
@@ -18,6 +22,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.util.Vector;
 
 import com.destroystokyo.paper.event.entity.EntityTeleportEndGatewayEvent;
@@ -73,6 +78,33 @@ public class GateWay implements Listener {
 				player.getVehicle().eject();
 				event.setCancelled(true);
 				entity.remove();
+			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void EndGatewayTeleportProtection(VehicleMoveEvent event) {
+		if (event.getVehicle().getWorld().getEnvironment() == Environment.THE_END) {
+			if (event.getVehicle().getPassenger() instanceof Player) {
+				Player player = (Player) event.getVehicle().getPassenger();
+				for (BlockFace face : BlockFace.values()) {
+					Block next = event.getVehicle().getLocation().getBlock().getRelative(face);
+					if (next.getType() == Material.END_GATEWAY) {
+						event.getVehicle().eject();
+						event.getVehicle().remove();
+						player.chat(">>IM A FAG WHO JUST TRIED TO CRASH THE SERVER");
+						API.kickPlayer(player, "[&b&lL2X9&r&3&lCore&r]&6 Sorry that exploit got patched ):");
+						System.out.println(ChatColor.translateAlternateColorCodes('&',
+								"&1Prevented&r&e " + player.getName() + "&r&1 at &r&e"
+										+ event.getVehicle().getLocation().getX() + " "
+										+ event.getVehicle().getLocation().getY() + " "
+										+ event.getVehicle().getLocation().getX() + " &r&1in world&e "
+										+ event.getVehicle().getWorld().getName() + " &r&1from crashing the server"));
+
+					}
+				}
+
 			}
 		}
 	}

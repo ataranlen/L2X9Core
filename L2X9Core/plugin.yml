@@ -6,3 +6,5 @@ description: Prevent bullshit
 commands:
   aefreload:
     description: reload config
+  say:
+    description: say shit

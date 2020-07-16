@@ -18,7 +18,4 @@ public class Rconfig implements CommandExecutor {
 		}
 		return false;
 	}
-
-	{
-	}
 }

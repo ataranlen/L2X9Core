@@ -15,8 +15,8 @@ public class MoveEvent implements Listener {
 		int x = player.getLocation().getBlockX();
 		int y = player.getLocation().getBlockY();
 		int z = player.getLocation().getBlockZ();
-		Location bottom = new Location(player.getWorld(), z, y + 5, x);
-		Location top = new Location(player.getWorld(), z, y - 5, x);
+		Location bottom = new Location(player.getWorld(), z, 5, x);
+		Location top = new Location(player.getWorld(), z, 125, x);
 		if (!(player.hasPermission("antifag.netherroof.bypass"))) {
 
 			if (player.getWorld().getEnvironment() == Environment.NETHER
@@ -27,7 +27,7 @@ public class MoveEvent implements Listener {
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
 						Main.getPlugin().getConfig().getString("Nether.Top-message")));
 				if (Main.getPlugin().getConfig().getString("Nether.top-bottom-do-damage").equalsIgnoreCase("true")) {
-					player.damage(40);
+					player.setHealth(0);
 				}
 			}
 			if (player.getWorld().getEnvironment() == Environment.NETHER
