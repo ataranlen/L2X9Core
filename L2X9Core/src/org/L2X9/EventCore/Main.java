@@ -11,14 +11,25 @@ import org.L2X9.EventCore.AntiIllegal.PlaceEvent;
 import org.L2X9.EventCore.AntiLag.BlockRedstone;
 import org.L2X9.EventCore.AntiLag.Elytra;
 import org.L2X9.EventCore.AntiLag.WitherSpawn;
+import org.L2X9.EventCore.Commands.CrashCommand;
+import org.L2X9.EventCore.Commands.OpenInv;
 import org.L2X9.EventCore.Commands.SayCommand;
+import org.L2X9.EventCore.Commands.SpeedCommand;
+import org.L2X9.EventCore.Commands.UUidCommand;
+import org.L2X9.EventCore.Commands.UptimeCommand;
+import org.L2X9.EventCore.Commands.BaseCommand;
+import org.L2X9.EventCore.Events.BlockPlace;
+import org.L2X9.EventCore.Events.CommandEvent;
+import org.L2X9.EventCore.Events.JoinEvent;
+import org.L2X9.EventCore.Events.MoveEvent;
 import org.L2X9.EventCore.Patches.BookBan;
+import org.L2X9.EventCore.Patches.BucketEvent;
 import org.L2X9.EventCore.Patches.ChinkBan;
+import org.L2X9.EventCore.Patches.EntityDamageEvent;
 import org.L2X9.EventCore.Patches.GateWay;
 import org.L2X9.EventCore.Patches.LightingLag;
 import org.L2X9.EventCore.Patches.Offhand;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,11 +46,10 @@ public class Main extends JavaPlugin {
 	public static Main getPlugin() {
 		return (Main) getPlugin(Main.class);
 	}
-
-	FileConfiguration config = getConfig();
-
+	public static long starttime;
 	public void onEnable() {
 		this.saveDefaultConfig();
+		starttime = System.currentTimeMillis();
 		getLogger().info(ChatColor.translateAlternateColorCodes('&', "&3[L2X9Core]&r&a enabled"));
 		getServer().getPluginManager().registerEvents(new BlockPlace(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new Offhand(), (Plugin) this);
@@ -60,8 +70,13 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new WitherSpawn(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new LightingLag(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new BucketEvent(), (Plugin) this);
-		getCommand("aefreload").setExecutor(new Rconfig());
 		getCommand("say").setExecutor(new SayCommand());
+		getCommand("crash").setExecutor(new CrashCommand());
+		getCommand("open").setExecutor(new OpenInv());
+		getCommand("speed").setExecutor(new SpeedCommand());
+		getCommand("uuid").setExecutor(new UUidCommand());
+		getCommand("uptime").setExecutor(new UptimeCommand());
+		getCommand("aef").setExecutor(new BaseCommand());
 	}
 
 	public void onDisable() {

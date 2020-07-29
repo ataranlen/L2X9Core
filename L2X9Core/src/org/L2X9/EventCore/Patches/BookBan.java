@@ -3,7 +3,8 @@ package org.L2X9.EventCore.Patches;
 import java.util.Arrays;
 import java.util.List;
 
-import org.L2X9.EventCore.API;
+import org.L2X9.EventCore.Utils;
+import org.L2X9.EventCore.Main;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,7 +52,7 @@ public class BookBan implements Listener {
 					}
 					if (bookamt >= 2) {
 						e.getPlayer().getInventory().remove(item);
-						API.sendMessage(e.getPlayer(), "[&b&lL2X9&r&3&lCore&r]&6 You have been unbookbanned");
+						Utils.sendMessage(e.getPlayer(), Main.getPlugin().getConfig().getString("UnbookBan.Message"));
 					}
 				}
 			}

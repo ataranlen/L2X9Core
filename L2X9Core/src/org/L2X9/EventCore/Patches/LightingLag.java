@@ -1,6 +1,6 @@
 package org.L2X9.EventCore.Patches;
 
-import org.L2X9.EventCore.API;
+import org.L2X9.EventCore.Utils;
 import org.L2X9.EventCore.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,7 +14,7 @@ public class LightingLag implements Listener {
 	@EventHandler
 	public void delay(BlockBreakEvent event) {
 		if (event.getBlock().getLocation().getBlockY() > 250
-				&& API.getTps() <= Main.getPlugin().getConfig().getInt("LightingLag-StepIn.TPS")) {
+				&& Utils.getTps() <= Main.getPlugin().getConfig().getInt("LightingLag-StepIn.TPS")) {
 			event.setCancelled(true);
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
 				@Override
@@ -32,7 +32,7 @@ public class LightingLag implements Listener {
 		Player player = event.getPlayer();
 		Material block = event.getPlayer().getInventory().getItemInMainHand().getType();
 		if (event.getBlock().getLocation().getBlockY() > 250
-				&& API.getTps() <= Main.getPlugin().getConfig().getInt("LightingLag-StepIn.TPS")) {
+				&& Utils.getTps() <= Main.getPlugin().getConfig().getInt("LightingLag-StepIn.TPS")) {
 			event.setCancelled(true);
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
 				@Override

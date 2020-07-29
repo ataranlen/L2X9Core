@@ -33,8 +33,8 @@ Offhand-Server-Crash:
 #Use {Player} as a place holder for the players name
 FirstJoin:
    Message: '&c{Player}&r&7 Has joined the server for the first time'
-#Elytra/redstone disable TPS value
-#Set "40" to disable
+#Elytra/redstone disable TPS values keep in mind this is a double so it can be like 13.2255
+#Set "0" to disable
 Elytra:
    Disable-TPS: 17 
 Redstone:
@@ -44,3 +44,18 @@ AntiIllegal-Enabled: true
 #Anti LightLag
 LightingLag-StepIn:
    TPS: 17
+#Misc config shit
+
+#Message to send when a player tries to use a 32k or strength 255
+IllegalDamage: 
+   Message: "[&b&lL2X9&r&3&lCore&r]&6 How did you even get a 32k out to begin with"
+#Player attempts to use or drink an illeagl potion or use an illegal tipped arrow
+IllegalPotion:
+   Message: "[&b&lL2X9&r&3&lCore&r]&6 Sorry those are patched"
+#Message to send the player when they use an elytra in low tps use {tps} to get the elytra disable tps
+ElytraLowTPS:
+   Message: "[&b&lL2X9&r&3&lCore&r] &6Elytras are disabled if the tps is below&r&c {tps}"
+UnbookBan: 
+   Message: "[&b&lL2X9&r&3&lCore&r]&6 You have been unbookbanned"
+#Message for /discord use & for colors
+Discord: "&6Join us on discord at &r&c<Your discord here>"

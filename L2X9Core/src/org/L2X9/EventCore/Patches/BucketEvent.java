@@ -1,4 +1,4 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Patches;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

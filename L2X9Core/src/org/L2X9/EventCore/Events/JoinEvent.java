@@ -1,5 +1,6 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Events;
 
+import org.L2X9.EventCore.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -27,12 +28,11 @@ public class JoinEvent implements Listener {
 					Main.getPlugin().getConfig().getString("FirstJoin.Message").replace("{Player}", player.getName())));
 		}
 	}
+
 	@EventHandler
 	public void onKick(PlayerKickEvent event) {
 		if (event.getReason().equalsIgnoreCase("Timed out")) {
 			event.setCancelled(true);
-			//ge
 		}
 	}
-
 }

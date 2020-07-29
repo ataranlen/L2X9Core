@@ -1,5 +1,6 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Events;
 
+import org.L2X9.EventCore.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

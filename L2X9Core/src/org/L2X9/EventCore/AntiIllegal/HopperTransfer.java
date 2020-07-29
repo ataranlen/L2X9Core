@@ -14,19 +14,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class HopperTransfer implements Listener {
-	@SuppressWarnings({ "deprecation", "rawtypes", "unused" })
+	@SuppressWarnings({ "deprecation"})
 	@EventHandler
 	public void onTransfer(InventoryClickEvent event) {
 		if (event.getClickedInventory() != null) {
 			ItemStack[] var5;
-			ItemStack ite = event.getCursor();
 			int var4 = (var5 = event.getClickedInventory().getContents()).length;
 
 			for (int var3 = 0; var3 < var4; ++var3) {
 				ItemStack item = var5[var3];
 				if (item != null) {
-					List ublist = Main.allowedUBs;
-					String na = ite.getI18NDisplayName();
+					List<String> ublist = Main.allowedUBs;
 					if (ublist.contains(String.valueOf(item.getTypeId()))) {
 						if (item.getDurability() > item.getType().getMaxDurability()) {
 							item.setDurability((short) 0);
@@ -45,49 +43,47 @@ public class HopperTransfer implements Listener {
 					List list = Main.blockedids;
 					if (list.contains(String.valueOf(item.getTypeId()))) {
 						illegalsFound = true;
-						event.getInventory().removeItem(new ItemStack[] { item });
+						 event.getClickedInventory().removeItem(new ItemStack[]{item});
 					}
-
 					if (item.getEnchantments() != null) {
-						Map Enchants = item.getEnchantments();
-						Iterator var11 = Enchants.entrySet().iterator();
+						Map<?, ?> Enchants = item.getEnchantments();
+						Iterator<?> var11 = Enchants.entrySet().iterator();
 
 						label66: while (true) {
-							Entry entry;
+							Entry<?, ?> entry;
 							Integer lvl;
 							do {
 								if (!var11.hasNext()) {
 									break label66;
 								}
 
-								entry = (Entry) var11.next();
+								entry = (Entry<?, ?>) var11.next();
 								lvl = (Integer) entry.getValue();
 							} while (lvl <= ((Enchantment) entry.getKey()).getMaxLevel());
 
 							illegalsFound = true;
-							Iterator var14 = item.getEnchantments().keySet().iterator();
+							Iterator<?> var14 = item.getEnchantments().keySet().iterator();
 
 							while (var14.hasNext()) {
 
 								Enchantment e = (Enchantment) var14.next();
-								item.removeEnchantment(e);
+								 item.removeEnchantment(e);
 
 								try {
 									if (e.getId() != 18 && e.getId() != 17) {
-										item.addEnchantment(e, e.getMaxLevel());
+										 item.addEnchantment(e, e.getMaxLevel());
 									}
 								} catch (Exception var16) {
 								}
 							}
 
 							ItemMeta m = item.getItemMeta();
-							item.setItemMeta(m);
+							 item.setItemMeta(m);
 						}
 					}
 
 					if (illegalsFound) {
-						event.setCancelled(true);
-
+						 event.setCancelled(true);
 					}
 				}
 			}

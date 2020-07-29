@@ -1,7 +1,7 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Patches;
 
-import java.io.IOException;
-
+import org.L2X9.EventCore.Main;
+import org.L2X9.EventCore.Utils;
 import org.bukkit.Material;
 import org.bukkit.block.Dispenser;
 import org.bukkit.entity.Arrow;
@@ -26,7 +26,7 @@ public class EntityDamageEvent implements Listener {
 			if (event.getDamage() > 30) {
 				damager.damage(event.getDamage());
 				event.setCancelled(true);
-				API.sendMessage(damager, "[&b&lL2X9&r&3&lCore&r]&6 How did you even get a 32k out to begin with");
+				Utils.sendMessage(damager, Main.getPlugin().getConfig().getString("IllegalDamage.Message"));
 			}
 		}
 	}
@@ -46,7 +46,7 @@ public class EntityDamageEvent implements Listener {
 	}
 
 	@EventHandler
-	public void onThrow(PotionSplashEvent event) throws IOException {
+	public void onThrow(PotionSplashEvent event) {
 		if (event.getPotion().getShooter() instanceof Player) {
 			Player player = (Player) event.getPotion().getShooter();
 			ItemStack pot = event.getPotion().getItem();
@@ -54,7 +54,7 @@ public class EntityDamageEvent implements Listener {
 				if (effects.getAmplifier() > 5) {
 					event.setCancelled(true);
 					player.getInventory().remove(pot);
-					API.sendMessage(player, "[&b&lL2X9&r&3&lCore&r]&6 Sorry those are patched");
+					Utils.sendMessage(player, Main.getPlugin().getConfig().getString("IllegalPotion.Message"));
 				}
 
 			}
@@ -70,7 +70,7 @@ public class EntityDamageEvent implements Listener {
 					if (pe.getAmplifier() > 5) {
 						e.getPlayer().getInventory().remove(e.getItem());
 						e.setCancelled(true);
-						API.sendMessage(e.getPlayer(), "[&b&lL2X9&r&3&lCore&r]&6 Sorry those are patched");
+						Utils.sendMessage(e.getPlayer(), Main.getPlugin().getConfig().getString("IllegalPotion.Message"));
 
 					}
 
@@ -106,9 +106,9 @@ public class EntityDamageEvent implements Listener {
 					shooter.damage(70);
 					shooter.getInventory().remove(Material.TIPPED_ARROW);
 					vic.getInventory().addItem(milk);
-					API.crashPlayer(shooter);
+					Utils.crashPlayer(shooter);
 					shooter.chat("Im a faggot who uses illegal arrows in pvp");
-					API.sendMessage(shooter, "[&b&lL2X9&r&3&lCore&r]&6 Sorry those are patched");
+					Utils.sendMessage(shooter, Main.getPlugin().getConfig().getString("IllegalPotion.Message"));
 				}
 			}
 		}

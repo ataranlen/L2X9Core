@@ -1,10 +1,15 @@
 name: L2X9Core
-version: 1.0
+version: 1.1
 main: org.L2X9.EventCore.Main
 authors: [254n_m]
 description: Prevent bullshit
 commands:
-  aefreload:
-    description: reload config
   say:
-    description: say shit
+  open: 
+  crash:
+  speed:
+  top:  
+  uuid:
+  uptime:
+  aef:
+    

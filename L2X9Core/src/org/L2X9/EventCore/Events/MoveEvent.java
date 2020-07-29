@@ -1,5 +1,6 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Events;
 
+import org.L2X9.EventCore.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
@@ -13,7 +14,6 @@ public class MoveEvent implements Listener {
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		int x = player.getLocation().getBlockX();
-		int y = player.getLocation().getBlockY();
 		int z = player.getLocation().getBlockZ();
 		Location bottom = new Location(player.getWorld(), z, 5, x);
 		Location top = new Location(player.getWorld(), z, 125, x);

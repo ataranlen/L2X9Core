@@ -1,5 +1,7 @@
-package org.L2X9.EventCore;
+package org.L2X9.EventCore.Events;
 
+import org.L2X9.EventCore.Main;
+import org.L2X9.EventCore.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +17,7 @@ public class CommandEvent implements Listener {
 				&& player.getLocation().getBlockZ() < spawn && player.getLocation().getBlockZ() > -spawn) {
 			if (event.getMessage().toLowerCase().contains("/home")) {
 				event.setCancelled(true);
-				API.sendMessage(player, Main.getPlugin().getConfig().getString("Spawn.Message").replace("%r%", "" + spawn + ""));
+				Utils.sendMessage(player, Main.getPlugin().getConfig().getString("Spawn.Message").replace("%r%", "" + spawn + ""));
 			}
 		}
 	}
