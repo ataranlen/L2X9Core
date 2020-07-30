@@ -1,5 +1,6 @@
 package org.L2X9.EventCore;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.L2X9.EventCore.AntiIllegal.ItemPickup;
 import org.L2X9.EventCore.AntiIllegal.PlaceEvent;
 import org.L2X9.EventCore.AntiLag.BlockRedstone;
 import org.L2X9.EventCore.AntiLag.Elytra;
+import org.L2X9.EventCore.AntiLag.LightingLag;
+import org.L2X9.EventCore.AntiLag.MinecartLag;
 import org.L2X9.EventCore.AntiLag.WitherSpawn;
 import org.L2X9.EventCore.Commands.CrashCommand;
 import org.L2X9.EventCore.Commands.OpenInv;
@@ -27,7 +30,6 @@ import org.L2X9.EventCore.Patches.BucketEvent;
 import org.L2X9.EventCore.Patches.ChinkBan;
 import org.L2X9.EventCore.Patches.EntityDamageEvent;
 import org.L2X9.EventCore.Patches.GateWay;
-import org.L2X9.EventCore.Patches.LightingLag;
 import org.L2X9.EventCore.Patches.Offhand;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -48,7 +50,7 @@ public class Main extends JavaPlugin {
 	}
 	public static long starttime;
 	public void onEnable() {
-		this.saveDefaultConfig();
+		saveDefaultConfig();
 		starttime = System.currentTimeMillis();
 		getLogger().info(ChatColor.translateAlternateColorCodes('&', "&3[L2X9Core]&r&a enabled"));
 		getServer().getPluginManager().registerEvents(new BlockPlace(), (Plugin) this);
@@ -70,6 +72,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new WitherSpawn(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new LightingLag(), (Plugin) this);
 		getServer().getPluginManager().registerEvents(new BucketEvent(), (Plugin) this);
+		getServer().getPluginManager().registerEvents(new MinecartLag(), (Plugin) this);
 		getCommand("say").setExecutor(new SayCommand());
 		getCommand("crash").setExecutor(new CrashCommand());
 		getCommand("open").setExecutor(new OpenInv());

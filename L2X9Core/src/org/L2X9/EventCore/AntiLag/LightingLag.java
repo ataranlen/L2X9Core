@@ -1,4 +1,4 @@
-package org.L2X9.EventCore.Patches;
+package org.L2X9.EventCore.AntiLag;
 
 import org.L2X9.EventCore.Utils;
 import org.L2X9.EventCore.Main;

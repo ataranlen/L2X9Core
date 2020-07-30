@@ -1,7 +1,9 @@
 package org.L2X9.EventCore;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.bukkit.Bukkit;
@@ -9,11 +11,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import net.minecraft.server.v1_12_R1.MinecraftServer;
 
 public class Utils {
+	private static YamlConfiguration file;
 	@SuppressWarnings("deprecation")
 	public static double getTps() {
 		return (MinecraftServer.getServer().recentTps[0]);
@@ -106,5 +110,28 @@ public class Utils {
 
 	public static String getPrefix() {
 		return "[&b&lL2X9&r&3&lCore&r] ";
+	}
+	//========================================================================================================================================================================
+	public static YamlConfiguration loadCustomConfig(String name, File out) {
+		try {
+		InputStream in = Main.getPlugin().getResource(name);
+		if (!out.exists()) {
+			out.createNewFile();
+		}
+		 file = YamlConfiguration.loadConfiguration(out);
+		if (in != null) {
+			InputStreamReader inReader = new InputStreamReader(in);
+			file.setDefaults(YamlConfiguration.loadConfiguration(inReader));
+			file.options().copyDefaults(true);
+			file.options().copyHeader(true);
+			file.save(out);
+		}
+		return file;
+		
+		}catch (IOException e) {
+			e.printStackTrace();
+			return null;
+			
+		}
 	}
 }

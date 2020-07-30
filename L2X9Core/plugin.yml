@@ -7,8 +7,7 @@ commands:
   say:
   open: 
   crash:
-  speed:
-  top:  
+  speed:  
   uuid:
   uptime:
   aef:

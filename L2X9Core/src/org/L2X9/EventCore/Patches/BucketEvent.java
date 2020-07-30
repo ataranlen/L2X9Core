@@ -6,6 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
+import net.minecraft.server.v1_12_R1.PacketPlayInCustomPayload;
+
 public class BucketEvent implements Listener {
 
 	@EventHandler

@@ -45,7 +45,6 @@ AntiIllegal-Enabled: true
 LightingLag-StepIn:
    TPS: 17
 #Misc config shit
-
 #Message to send when a player tries to use a 32k or strength 255
 IllegalDamage: 
    Message: "[&b&lL2X9&r&3&lCore&r]&6 How did you even get a 32k out to begin with"
@@ -59,3 +58,6 @@ UnbookBan:
    Message: "[&b&lL2X9&r&3&lCore&r]&6 You have been unbookbanned"
 #Message for /discord use & for colors
 Discord: "&6Join us on discord at &r&c<Your discord here>"
+#Ammount of vehicles allowed in a chunk
+Minecart-per-chunk:
+   limit: 20

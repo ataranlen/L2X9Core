@@ -1,12 +1,16 @@
 package org.L2X9.EventCore.Commands;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.L2X9.EventCore.Main;
 import org.L2X9.EventCore.Utils;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 
-public class BaseCommand implements CommandExecutor {
+public class BaseCommand implements TabExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -14,6 +18,7 @@ public class BaseCommand implements CommandExecutor {
 			if (args.length > 0) {
 				if (args[0].equalsIgnoreCase("reload")) {
 					Main.getPlugin().reloadConfig();
+					Utils.loadCustomConfig("messages.yml", new File("plugins/L2X9Core/messages.yml"));
 					Utils.sendMessage(sender, Utils.getPrefix() + "&aReloaded configuration file");
 				} else {
 					if (args[0].equalsIgnoreCase("version")) {
@@ -40,6 +45,15 @@ public class BaseCommand implements CommandExecutor {
 			
 		}
 		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+		if (args.length > 0) { 
+		List<String> list = Arrays.asList("reload", "version", "help");
+		return list;
+		}
+		return null;
 	}
 
 }

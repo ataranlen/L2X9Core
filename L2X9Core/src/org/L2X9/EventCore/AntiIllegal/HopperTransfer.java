@@ -40,7 +40,7 @@ public class HopperTransfer implements Listener {
 					}
 
 					boolean illegalsFound = false;
-					List list = Main.blockedids;
+					List<String> list = Main.blockedids;
 					if (list.contains(String.valueOf(item.getTypeId()))) {
 						illegalsFound = true;
 						 event.getClickedInventory().removeItem(new ItemStack[]{item});
